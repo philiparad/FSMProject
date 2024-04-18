@@ -7,6 +7,11 @@ Finite state machines are a conceptual model for dealing with conditional UI, co
 management to initialization and more.State machines simplify tangled paths of asynchronous code and easy to test.
 In this project we will implement a FSM for a React application.
 
+Library
+=======
+Deployed to NPM
+https://www.npmjs.com/package/fsm-react
+
 Project
 =======
 This the list of components used in the project
@@ -17,7 +22,7 @@ This the list of components used in the project
 
 3. createStyles.js: This file contains the `createStyles` function, which generates CSS styles for the application components.
 
-4. useFSM.js: This file contains the `useFSM` custom hook, which implements a finite state machine for managing the state of the application.
+4. useFSM.js(For local use): This file contains the `useFSM` custom hook, which implements a finite state machine for managing the state of the application.
 
 5. DataLoader.js: This file contains the `DataLoader` component, which orchestrates the fetching of data and renders different components based 
    on the current state of the application (`IDLE`, `LOADING`, `SUCCESS`, `ERROR`).
