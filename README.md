@@ -39,6 +39,8 @@ Reat project under Webpack
 
 Demostration of Project
 =======================
+In order to bypass possible obstacles in configurations, I provide 2 source code, one in JS, and one in TS, to run online:
 FullCode.js can be run online in https://codedamn.com/online-compiler/reactjs
+FullCode.ts can be run online in https://playcode.io/react_ts_hooks
 
 
