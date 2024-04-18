@@ -8,8 +8,7 @@
     "i18next-http-backend": "^1.2.6",
     "react": "^18.2.0",
     "react-csv": "^2.2.2",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^11.10.0"
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "webpack serve --env environment=config/local.env --config webpack.local.config.js  --env ASSET_PATH=http://localhost:3000/ --mode=development"
