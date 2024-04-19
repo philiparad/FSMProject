@@ -6,7 +6,6 @@ const Dotenv = require('dotenv-webpack');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = (env) => {
-  process.env.ASSET_PATH = env.ASSET_PATH;
   return {
     output: {
       path: path.resolve(__dirname, 'build'),
@@ -101,12 +100,6 @@ module.exports = (env) => {
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css'
-      }),
-      new CopyPlugin({
-        patterns: [
-          { from: 'img', to: 'img' },
-          { from: 'locales', to: 'locales' }
-        ]
       }),
       new Dotenv({
         path: env.environment,
