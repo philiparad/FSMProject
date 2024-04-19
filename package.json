@@ -9,7 +9,8 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "start": "webpack serve --env environment=config/local.env --config webpack.config.js --mode=development"
+    "start": "webpack serve --env environment=config/local.env --config webpack.config.js --mode=development",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
