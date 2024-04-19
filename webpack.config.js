@@ -9,7 +9,6 @@ module.exports = (env) => {
   return {
     output: {
       path: path.resolve(__dirname, 'build'),
-      publicPath: env.ASSET_PATH,
       filename: 'main-bundle.js',
       clean: true
     },
@@ -42,16 +41,7 @@ module.exports = (env) => {
         },
         {
           test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'string-replace-loader',
-              options: {
-                search: /(src:\s*)(['"])(.*?)\2/g,
-                replace: `$1$2${env.ASSET_PATH}$3$2`
-              }
-            }
-          ]
+          exclude: /node_modules/
         },
         {
           test: /\.(js|jsx)$/,
@@ -92,7 +82,6 @@ module.exports = (env) => {
         }
       ]
     },
-
     plugins: [
       new HtmlPlugIn({
         filename: 'index.html',
@@ -104,7 +93,7 @@ module.exports = (env) => {
       new Dotenv({
         path: env.environment,
         systemvars: true
-      }),
+      })
     ],
 
     devServer: {
