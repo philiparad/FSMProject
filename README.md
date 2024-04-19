@@ -39,6 +39,11 @@ This the list of components used in the project
 This structure separates each component and functionality into its own module, making the codebase modular and easier to manage. 
 Each component is responsible for a specific part of the application's UI or logic.
 
+Tests
+=====
+App.test.js
+npx jest
+
 Running environment
 ===================
 Reat project under Node.js 21.7.3 / Webpack 5.38.1 / React 18.2.0
