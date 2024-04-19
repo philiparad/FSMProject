@@ -40,11 +40,11 @@ Each component is responsible for a specific part of the application's UI or log
 
 Running environment
 ===================
-Reat project under Webpack
+Reat project under Node.js 21.7.3 / Webpack 5.38.1 / React 18.2.0
 
 Demostration of Project
 =======================
-In order to bypass possible obstacles in configurations, I provide 2 source code, one in JS, and one in TS, to run online:
+In order to bypass possible obstacles in configurations, I provide 2 full source code, one in JS, and one in TS, to run online:
 FullCode.js can be run online in https://codedamn.com/online-compiler/reactjs
 FullCode.ts can be run online in https://playcode.io/react_ts_hooks
 
