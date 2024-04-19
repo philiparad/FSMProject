@@ -9,8 +9,7 @@ In this project we will implement a FSM for a React application.
 
 Library
 =======
-fsm-react 1.3.0
-Deployed to NPM
+fsm-react@1.3.0
 https://www.npmjs.com/package/fsm-react
 
 Project
