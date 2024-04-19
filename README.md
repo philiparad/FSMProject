@@ -41,8 +41,7 @@ Each component is responsible for a specific part of the application's UI or log
 
 Tests
 =====
-App.test.js
-npx jest
+npm test
 
 Running environment
 ===================
