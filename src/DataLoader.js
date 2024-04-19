@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataIdle from './DataIdle';
 import DataLoading from './DataLoading';
 import DataDisplay from './DataDisplay';
-import { useFSM } from './useFSM';
+import { useFSM } from 'fsm-react';
 import { getRandomCountries } from './utils';
 
 const DataLoader = () => {
