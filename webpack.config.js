@@ -90,6 +90,11 @@ module.exports = (env) => {
       new MiniCssExtractPlugin({
         filename: '[name].css'
       }),
+      new CopyPlugin({
+	    patterns: [
+	       { from: 'img', to: 'img' }
+	     ]
+      }),
       new Dotenv({
         path: env.environment,
         systemvars: true
