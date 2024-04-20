@@ -4,6 +4,7 @@ import { createStyles } from './createStyles';
 
 const App = () => {
   const styles = createStyles();
+  localStorage.setItem('error', false);
 
   return (
     <div>

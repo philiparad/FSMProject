@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import DataIdle from './DataIdle';
 import DataLoading from './DataLoading';
+import DataError from './DataError';
 import DataDisplay from './DataDisplay';
+import ToggleAPI from './ToggleAPI';
 import { useFSM } from 'fsm-react';
 import { getRandomCountries } from './utils';
 
@@ -43,7 +45,8 @@ const DataLoader = () => {
   useEffect(() => {
     if (currentState === states.LOADING) {
       setTimeout(() => {
-        fetch('https://restcountries.com/v3.1/region/europe')
+		const api = localStorage.getItem('error') === 'true'? 'https://restcountriesxx.com/v3.1/region/europe' : 'https://restcountries.com/v3.1/region/europe';
+        fetch(api)
           .then(response => response.json())
           .then(data => {
             if (data) {
@@ -62,10 +65,11 @@ const DataLoader = () => {
   }, [currentState, transition]);
 
   const randomCountries = data ? getRandomCountries(data, 10) : [];
-
+  const currentClass = currentState === states.ERROR? "currentStateError" : "currentState";
   return (
     <div>
-      <p className="currentState">Current State: {currentState}</p>
+	  <ToggleAPI/>
+      <p className={currentClass}>Current State: {currentState}</p>
       {currentState === states.IDLE && (
         <div>
           <DataIdle />
@@ -82,7 +86,10 @@ const DataLoader = () => {
         </div>
       )}
       {currentState === states.ERROR && (
-        <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+        <div>
+          <DataError />
+          <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+        </div>
       )}
     </div>
   );

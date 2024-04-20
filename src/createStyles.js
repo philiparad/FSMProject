@@ -6,6 +6,13 @@ export const createStyles = () => `
     margin-left: 5px;
   }
 
+  .currentStateError {
+    font-weight: bold;
+    color: #ff4d4f;
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+
   .fetchButton, .resetButton, .tryAgainButton {
     background-color: #1890ff;
     color: #fff;
@@ -42,13 +49,27 @@ export const createStyles = () => `
     vertical-align: middle;
   }
 
-  .dataLoading, .dataIdle {
+  .dataLoading, .dataIdle, .dataError {
     width: 500px;
     height: 509px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; /* Grey background color */
+    background-color: #fff;
+    border-radius: 10px;
+    border: 4px solid;
+  }
+
+  .dataLoading, .dataIdle {
+	  border-color: #1890ff;
+  }
+
+  .dataError {
+	border-color: #ff4d4f;
+  }
+
+  .dataErrorIcon {
+	  width: 70px;
   }
 
   .spinner {
@@ -60,6 +81,18 @@ export const createStyles = () => `
     animation: spin 1s linear infinite;
   }
 
+  .toggleAPI {
+    background-color: #fff;
+    color: #1890ff;
+    font-weight: bold;
+    border: 3px solid;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 
   @keyframes spin {
     0% { transform: rotate(0deg); }
