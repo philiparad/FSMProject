@@ -69,7 +69,7 @@ const DataLoader = () => {
   return (
     <div>
 	  <ToggleAPI/>
-      <p className={currentClass}>Current State: {currentState}</p>
+      <p className={currentClass}>** Current State: {currentState} **</p>
       {currentState === states.IDLE && (
         <div>
           <DataIdle />

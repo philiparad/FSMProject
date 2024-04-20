@@ -2,6 +2,7 @@ export const createStyles = () => `
   .currentState {
     font-weight: bold;
     color: #1890ff;
+    font-family: arial;
     margin-bottom: 10px;
     margin-left: 5px;
   }
@@ -9,6 +10,7 @@ export const createStyles = () => `
   .currentStateError {
     font-weight: bold;
     color: #ff4d4f;
+    font-family: arial;
     margin-bottom: 10px;
     margin-left: 5px;
   }
