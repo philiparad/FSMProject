@@ -11,9 +11,7 @@
   },
   "scripts": {
     "start": "webpack serve --env environment=config/local.env --config webpack.config.js --mode=development",
-    "predeploy": "npm run build",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "build": "webpack  --env environment=config/local.env --mode=development",
     "test": "react-scripts test"
   },
   "browserslist": {
