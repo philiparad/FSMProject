@@ -80,7 +80,7 @@ const DataLoader = () => {
         <div>
           <DataIdle />
           <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
-          <button type="button"	className="fetchButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
+          <button type="button"	className="tryAgainButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
         </div>
       )}
       {currentState === states.LOADING && (
