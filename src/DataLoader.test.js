@@ -35,7 +35,7 @@ describe('DataLoader Test', () => {
 	waitFor(() =>
 	{
 	   expect(screen.getByText(/LOADING/i)).toBeInTheDocument;
-	   jest.setTimeout(10000);
+	   jest.setTimeout(4000);
 	   expect(screen.getByText(/SUCCESS/i)).toBeInTheDocument;
 	});
   });
