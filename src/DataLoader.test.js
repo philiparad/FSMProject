@@ -28,15 +28,13 @@ describe('DataLoader Test', () => {
       render(<DataLoader />);
     });
     expect(screen.getByText(/IDLE/i)).toBeInTheDocument;
-
-	const fetchButton = screen.getByText(/Fetch Data/i);
-	await fireEvent.click(fetchButton);
-
-	waitFor(() =>
-	{
-	   expect(screen.getByText(/LOADING/i)).toBeInTheDocument;
-	   jest.setTimeout(4000);
-	   expect(screen.getByText(/SUCCESS/i)).toBeInTheDocument;
-	});
+    const fetchButton = screen.getByText(/Fetch Data/i);
+    await fireEvent.click(fetchButton);
+    waitFor(() =>
+    {
+	expect(screen.getByText(/LOADING/i)).toBeInTheDocument;
+	jest.setTimeout(4000);
+	expect(screen.getByText(/SUCCESS/i)).toBeInTheDocument;
+    });
   });
 });
