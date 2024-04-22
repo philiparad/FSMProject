@@ -60,7 +60,7 @@ const DataLoader = () => {
             console.error('Error fetching data:', error);
             transition(transitions.ERROR);
           });
-      }, 4000);
+      }, 3000);
     }
   }, [currentState, transition]);
 
