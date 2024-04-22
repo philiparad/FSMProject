@@ -3,8 +3,10 @@ import DataIdle from './DataIdle';
 import DataLoading from './DataLoading';
 import DataError from './DataError';
 import DataDisplay from './DataDisplay';
+import DeadEndPanel from './DeadEndPanel';
 import ToggleAPI from './ToggleAPI';
 import { useFSM } from 'fsm-react';
+//import { useFSM } from './useFSM';
 import { getRandomCountries } from './utils';
 
 const DataLoader = () => {
@@ -13,7 +15,8 @@ const DataLoader = () => {
     IDLE: 'IDLE',
     LOADING: 'LOADING',
     SUCCESS: 'SUCCESS',
-    ERROR: 'ERROR'
+    ERROR: 'ERROR',
+    DEADEND: 'DEADEND'
   };
 
   const transitions = {
@@ -36,6 +39,9 @@ const DataLoader = () => {
     },
     [states.ERROR]: {
       [transitions.RESET]: states.IDLE
+    },
+    [states.DEADEND]: {
+	      [transitions.RESET]: states.IDLE
     }
   };
 
@@ -73,7 +79,8 @@ const DataLoader = () => {
       {currentState === states.IDLE && (
         <div>
           <DataIdle />
-          <button className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
+          <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
+          <button type="button"	className="fetchButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
         </div>
       )}
       {currentState === states.LOADING && (
@@ -90,6 +97,12 @@ const DataLoader = () => {
           <DataError />
           <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
         </div>
+      )}
+      {currentState === states.DEADEND && (
+	    <div>
+	      <DeadEndPanel />
+	      <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+	    </div>
       )}
     </div>
   );
