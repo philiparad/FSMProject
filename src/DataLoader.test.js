@@ -5,9 +5,21 @@ import { act } from 'react-dom/test-utils';
 import DataLoader from './DataLoader';
 
 jest.mock('fsm-react', () => ({
-  useFSM: () => {
-    return ['LOADING',jest.fn(()=> 'LOADING')];
-  }
+  useFSM: (initialState, states, transitions, transitionMap) => {
+	  let currentState = initialState;
+	  const setCurrentState = (nextState) => {
+		currentState = nextState;
+	  };
+	  const transition = (action) => {
+		const nextState = transitionMap[currentState][action];
+		if (nextState) {
+		  setCurrentState(nextState);
+		} else {
+		  setCurrentState(states.ERROR);
+		}
+	  };
+	  return [currentState, transition];
+	}
 }));
 
 describe('DataLoader Test', () => {
@@ -15,8 +27,15 @@ describe('DataLoader Test', () => {
     act(() => {
       render(<DataLoader />);
     });
-	  screen.debug();
-	  expect(screen.getByText(/LOADING/i)).toBeInTheDocument;
+    expect(screen.getByText(/IDLE/i)).toBeInTheDocument;
+
+	const fetchButton = screen.getByText(/Fetch Data/i);
+	await userEvent.click(fetchButton);
+
+	waitFor(() =>
+	{
+		expect(screen.getByText(/LOADING/i)).toBeInTheDocument;
+
+	});
   });
 });
-
