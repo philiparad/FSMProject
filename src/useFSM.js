@@ -8,7 +8,7 @@ export const useFSM = (initialState, states, transitions, transitionMap) => {
     if (nextState) {
       setCurrentState(nextState);
     } else {
-      setCurrentState(states.ERROR);
+      setCurrentState(states.DEADEND);
     }
   };
 
