@@ -6,7 +6,6 @@ import DataDisplay from './DataDisplay';
 import DeadEndPanel from './DeadEndPanel';
 import ToggleAPI from './ToggleAPI';
 import { useFSM } from 'fsm-react';
-//import { useFSM } from './useFSM';
 import { getRandomCountries } from './utils';
 
 const DataLoader = () => {
