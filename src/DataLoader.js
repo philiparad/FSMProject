@@ -48,6 +48,8 @@ const DataLoader = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+	//Notify potential end user, about the new state
+	window.postMessage({ type: 'STATE', payload: {name:currentState} }, '*');
     if (currentState === states.LOADING) {
       setTimeout(() => {
 		const api = localStorage.getItem('error') === 'true'? 'https://restcountriesxx.com/v3.1/region/europe' : 'https://restcountries.com/v3.1/region/europe';
