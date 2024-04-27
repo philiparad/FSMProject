@@ -11,7 +11,7 @@ In this project we will implement a FSM for a React application.
 Library
 =======
 The FSM was deployed as a npm package:
-fsm-react@1.3.1
+fsm-react@1.3.2
 https://www.npmjs.com/package/fsm-react
 
 Project
