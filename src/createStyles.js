@@ -62,6 +62,18 @@ export const createStyles = () => `
     border: 4px solid;
   }
 
+  .dataMessage {
+      width: 400px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 10px;
+      border: 4px solid;
+      margin-top: 20px;
+  }
+
   .dataLoading, .dataIdle {
 	  border-color: #1890ff;
   }

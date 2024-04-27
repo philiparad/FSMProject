@@ -4,6 +4,7 @@ import DataLoading from './DataLoading';
 import DataError from './DataError';
 import DataDisplay from './DataDisplay';
 import DeadEndPanel from './DeadEndPanel';
+import DataMessagePanel from './DataMessagePanel';
 import ToggleAPI from './ToggleAPI';
 import { useFSM } from './useFSM';
 import { getRandomCountries } from './utils';
@@ -91,38 +92,43 @@ const DataLoader = () => {
   const randomCountries = data ? getRandomCountries(data, 10) : [];
   const currentClass = currentState === states.ERROR? "currentStateError" : "currentState";
   return (
-    <div>
-	  <ToggleAPI/>
-      <p className={currentClass}>** Current State: {currentState} **</p>
-      {currentState === states.IDLE && (
-        <div>
-          <DataIdle />
-          <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
-          <button type="button"	className="tryAgainButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
-        </div>
-      )}
-      {currentState === states.LOADING && (
-        <DataLoading />
-      )}
-      {currentState === states.SUCCESS && (
-        <div>
-          <DataDisplay data={randomCountries} />
-          <button className="resetButton" onClick={() => transition(transitions.RESET)}>Reset</button>
-        </div>
-      )}
-      {currentState === states.ERROR && (
-        <div>
-          <DataError />
-          <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
-        </div>
-      )}
-      {currentState === states.DEADEND && (
-	    <div>
-	      <DeadEndPanel />
-	      <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
-	    </div>
-      )}
-    </div>
+	<div>
+		<div style={{width:600,height:665}}>
+		  <ToggleAPI/>
+		  <p className={currentClass}>** Current State: {currentState} **</p>
+		  {currentState === states.IDLE && (
+			<div>
+			  <DataIdle />
+			  <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
+			  <button type="button"	className="tryAgainButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
+			</div>
+		  )}
+		  {currentState === states.LOADING && (
+			<div>
+			  <DataLoading />
+			</div>
+		  )}
+		  {currentState === states.SUCCESS && (
+			<div>
+			  <DataDisplay data={randomCountries} />
+			  <button className="resetButton" onClick={() => transition(transitions.RESET)}>Reset</button>
+			</div>
+		  )}
+		  {currentState === states.ERROR && (
+			<div>
+			  <DataError />
+			  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+			</div>
+		  )}
+		  {currentState === states.DEADEND && (
+			<div>
+			  <DeadEndPanel />
+			  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+			</div>
+		  )}
+		</div>
+        <DataMessagePanel />
+	</div>
   );
 };
 

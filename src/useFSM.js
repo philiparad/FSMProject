@@ -8,14 +8,13 @@ export const useFSM = (initialState, states, transitions, transitionMap, transit
     if (nextState) {
       setCurrentState(nextState);
 
-      //Notify potential end user, about the new state
-       window.postMessage({ type: 'STATE', payload: {name:currentState} }, '*');
+	  //Notify potential end user, about the new state
+	  window.postMessage({ type: 'STATE', payload: {name:currentState} }, '*');
 
       // Execute the callback function if it exists for this transition
       if (transitionCallbacks && transitionCallbacks[action]) {
         transitionCallbacks[action]();
       }
-	    
     } else {
       setCurrentState(states.DEADEND);
     }
