@@ -44,12 +44,29 @@ const DataLoader = () => {
     }
   };
 
-  const [currentState, transition] = useFSM(initialState, states, transitions, transitionMap);
+  const transitionCallbacks = {
+	  [transitions.FETCH]: () => {
+		console.log('Transitioning to FETCH');
+		// Add any callback logic here
+	  },
+	  [transitions.SUCCESS]: () => {
+		console.log('Transitioning to SUCCESS');
+		// Add any callback logic here
+	  },
+	  [transitions.ERROR]: () => {
+		console.log('Transitioning to ERROR');
+		// Add any callback logic here
+	  },
+	  [transitions.RESET]: () => {
+		console.log('Transitioning to RESET');
+		// Add any callback logic here
+	  }
+  };
+
+  const [currentState, transition] = useFSM(initialState, states, transitions, transitionMap, transitionCallbacks);
   const [data, setData] = useState(null);
 
   useEffect(() => {
-	//Notify potential end user, about the new state
-	window.postMessage({ type: 'STATE', payload: {name:currentState} }, '*');
     if (currentState === states.LOADING) {
       setTimeout(() => {
 		const api = localStorage.getItem('error') === 'true'? 'https://restcountriesxx.com/v3.1/region/europe' : 'https://restcountries.com/v3.1/region/europe';

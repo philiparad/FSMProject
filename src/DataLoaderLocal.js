@@ -44,7 +44,26 @@ const DataLoader = () => {
     }
   };
 
-  const [currentState, transition] = useFSM(initialState, states, transitions, transitionMap);
+  const transitionCallbacks = {
+	  [transitions.FETCH]: () => {
+		console.log('Transitioning to FETCH');
+		// Add any callback logic here
+	  },
+	  [transitions.SUCCESS]: () => {
+		console.log('Transitioning to SUCCESS');
+		// Add any callback logic here
+	  },
+	  [transitions.ERROR]: () => {
+		console.log('Transitioning to ERROR');
+		// Add any callback logic here
+	  },
+	  [transitions.RESET]: () => {
+		console.log('Transitioning to RESET');
+		// Add any callback logic here
+	  }
+  };
+
+  const [currentState, transition] = useFSM(initialState, states, transitions, transitionMap, transitionCallbacks);
   const [data, setData] = useState(null);
 
   useEffect(() => {
