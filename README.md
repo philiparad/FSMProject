@@ -55,6 +55,6 @@ A working demo deployed on GitHub https://philiparad.github.io/
 
 Running locally with mock
 ========================
-Use express server in DevServer Directory
+Use express server in DevServer Directory: http://localhost:3000/?mock=true
 
 
