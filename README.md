@@ -5,7 +5,7 @@ library for React.js applications, for conditional UI.
 intro
 =====
 Finite state machines are a conceptual model for dealing with conditional UI, connectivity monitoring & 
-management to initialization and more.State machines simplify tangled paths of asynchronous code and easy to test.
+management to initialization and more. State machines simplify tangled paths of asynchronous code and easy to test.
 In this project we will implement a FSM for a React application.
 
 Library
@@ -49,8 +49,12 @@ Running environment
 ===================
 Reat project under Node.js 21.7.3 / Webpack 5.38.1 / React 18.2.0
 
-Demostration of Project
+Demonstration of Project
 =======================
 A working demo deployed on GitHub https://philiparad.github.io/
+
+Running locally with mock
+========================
+Use express server in DevServer Directory
 
 
