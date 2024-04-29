@@ -2,6 +2,7 @@
 Implementation of a FSM (Finite State Machine) as a JavaScript
 library for React.js applications, for conditional UI.
 
+
 intro
 =====
 Finite state machines are a conceptual model for dealing with conditional UI, connectivity monitoring & 
