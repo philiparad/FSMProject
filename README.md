@@ -1,4 +1,4 @@
-# IntuitProject
+# FSMProject
 Implementation of a FSM (Finite State Machine) as a JavaScript
 library for React.js applications, for conditional UI.
 
