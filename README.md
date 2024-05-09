@@ -1,3 +1,5 @@
+**  This project serves as a learning tool to explore and demonstrate Web technologies and architectural concepts. It's designed for educational purposes and is not a production-ready application.  **
+
 # FSM Project
 Implementation of a FSM (Finite State Machine) as a JavaScript
 library for React.js applications, for conditional UI.
