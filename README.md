@@ -50,6 +50,10 @@ Running environment
 ===================
 Reat project under Node.js 21.7.3 / Webpack 5.38.1 / React 18.2.0
 
+State Management
+================
+MobX
+
 Demonstration of Project
 =======================
 A working demo deployed on GitHub https://philiparad.github.io/
