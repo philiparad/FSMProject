@@ -1,17 +1,21 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { observer } from 'mobx-react';
+import ToggleAPI from './ToggleAPI';
 import DataLoader from './DataLoader';
-import { createStyles } from './createStyles';
+import './App.scss';
+//import { createStyles } from './createStyles';
 
 const App = () => {
-  const styles = createStyles();
-  localStorage.setItem('error', false);
 
-  return (
-    <div>
-      <style>{styles}</style>
-      <DataLoader />
-    </div>
-  );
+	//const styles = createStyles();
+	return (
+		<div>
+		  <h1 className="header">FSM (Finite State Machine) for conditional UI, in React applications</h1>
+		  <ToggleAPI/>
+		  <DataLoader />
+		</div>
+	)
 };
 
 export default App;

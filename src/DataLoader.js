@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react';
+import apiSettings from "./APISettings";
+import callbackStatus from "./CallbackStatus";
 import DataIdle from './DataIdle';
 import DataLoading from './DataLoading';
 import DataError from './DataError';
 import DataDisplay from './DataDisplay';
 import DeadEndPanel from './DeadEndPanel';
 import DataMessagePanel from './DataMessagePanel';
-import ToggleAPI from './ToggleAPI';
+import CallBackPanel from './CallBackPanel';
 import { useFSM } from 'fsm-react';
 import { getRandomCountries } from './utils';
 
-const DataLoader = () => {
+const DataLoader = observer(() => {
   const initialState = 'IDLE';
   const states = {
     IDLE: 'IDLE',
@@ -47,20 +50,16 @@ const DataLoader = () => {
 
   const transitionCallbacks = {
 	  [transitions.FETCH]: () => {
-		console.log('Transitioning to FETCH');
-		// Add any callback logic here
+		callbackStatus.setMsg('Callback: Transitioning to FETCH');
 	  },
 	  [transitions.SUCCESS]: () => {
-		console.log('Transitioning to SUCCESS');
-		// Add any callback logic here
+		callbackStatus.setMsg('Callback: Transitioning to SUCCESS');
 	  },
 	  [transitions.ERROR]: () => {
-		console.log('Transitioning to ERROR');
-		// Add any callback logic here
+		callbackStatus.setMsg('Callback: Transitioning to ERROR');
 	  },
 	  [transitions.RESET]: () => {
-		console.log('Transitioning to RESET');
-		// Add any callback logic here
+		callbackStatus.setMsg('Callback: Transitioning to RESET');
 	  }
   };
 
@@ -70,14 +69,7 @@ const DataLoader = () => {
   useEffect(() => {
     if (currentState === states.LOADING) {
       setTimeout(() => {
-
-		// Define the base API URL for fetching countries data
-		let api = 'https://restcountries.com/v3.1/region/europe';
-
-		// Check if 'error' flag is set in localStorage and update API accordingly
-		if (localStorage.getItem('error') === 'true') {
-			api = 'https://restcountriesxx.com/v3.1/region/europe';
-		}
+		let api = apiSettings.api;
 
 		// Check if 'mock' parameter is present in the URL and update API accordingly
 		const searchParams = new URLSearchParams(window.location.search);
@@ -106,44 +98,49 @@ const DataLoader = () => {
   const randomCountries = data ? getRandomCountries(data, 10) : [];
   const currentClass = currentState === states.ERROR? "currentStateError" : "currentState";
   return (
-	<div>
-		<div style={{width:600,height:665}}>
-		  <ToggleAPI/>
-		  <p className={currentClass}>** Current State: {currentState} **</p>
-		  {currentState === states.IDLE && (
-			<div>
-			  <DataIdle />
-			  <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
-			  <button type="button"	className="tryAgainButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
+	<div style={{display:'flex'}}>
+		<div>
+			<div style={{width:600,height:640}}>
+			  <p className={currentClass}>** Current State: {currentState} **</p>
+			  {currentState === states.IDLE && (
+				<div>
+				  <DataIdle />
+				  <button type="button"	className="fetchButton" onClick={() => transition(transitions.FETCH)}>Fetch Data</button>
+				  <button type="button"	className="tryAgainButton" onClick={() => transition(transitions.NONEXISTING)}>Dead End</button>
+				</div>
+			  )}
+			  {currentState === states.LOADING && (
+				<div>
+				  <DataLoading />
+				</div>
+			  )}
+			  {currentState === states.SUCCESS && (
+				<div>
+				  <DataDisplay data={randomCountries} />
+				  <button className="resetButton" onClick={() => transition(transitions.RESET)}>Reset</button>
+				</div>
+			  )}
+			  {currentState === states.ERROR && (
+				<div>
+				  <DataError />
+				  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+				</div>
+			  )}
+			  {currentState === states.DEADEND && (
+				<div>
+				  <DeadEndPanel />
+				  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
+				</div>
+			  )}
 			</div>
-		  )}
-		  {currentState === states.LOADING && (
-			<div>
-			  <DataLoading />
-			</div>
-		  )}
-		  {currentState === states.SUCCESS && (
-			<div>
-			  <DataDisplay data={randomCountries} />
-			  <button className="resetButton" onClick={() => transition(transitions.RESET)}>Reset</button>
-			</div>
-		  )}
-		  {currentState === states.ERROR && (
-			<div>
-			  <DataError />
-			  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
-			</div>
-		  )}
-		  {currentState === states.DEADEND && (
-			<div>
-			  <DeadEndPanel />
-			  <button className="tryAgainButton" onClick={() => transition(transitions.RESET)}>Try Again</button>
-			</div>
-		  )}
+			<DataMessagePanel />
 		</div>
-        <DataMessagePanel />
+		    <div>
+			   <div className="fsm-diagram"/>
+			   <CallBackPanel />
+		    </div>
 	</div>
   );
-};
+});
 
 export default DataLoader;
