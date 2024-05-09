@@ -1,4 +1,8 @@
-**  This project serves as a learning tool to explore and demonstrate Web technologies and architectural concepts. It's designed for educational purposes and is not a production-ready application.For more information on technology stack, and production demo see: https://www.linkedin.com/in/philiparad/  **
+=====
+=====
+This project serves as a learning tool to explore and demonstrate Web technologies and architectural concepts. It's designed for educational purposes and is not a production-ready application.For more information on technology stack, and production demo see: https://www.linkedin.com/in/philiparad/
+=====
+=====
 
 # FSM Project
 Implementation of a FSM (Finite State Machine) as a JavaScript
